@@ -1,21 +1,22 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import ConectaSeinfraIcon from "./../assets/IconsNewSvgs/ConectaSeinfra.svg";
-import LogoPrefeitura from "./../assets/IconsNewSvgs/LogoPrefeitura.svg";
-import pinkLine from "./../assets/IconsNewSvgs/pinkLine.svg";
-import yellowLine from "./../assets/IconsNewSvgs/yellowLine.svg";
-import { Button } from "./../components/ui/button";
+import ConectaSeinfraIcon from "./../../../assets/IconsNewSvgs/ConectaSeinfra.svg";
+import LogoPrefeitura from "./../../../assets/IconsNewSvgs/LogoPrefeitura.svg";
+import pinkLine from "./../../../assets/IconsNewSvgs/pinkLine.svg";
+import yellowLine from "./../../../assets/IconsNewSvgs/yellowLine.svg";
+import { Button } from "@/components/ui/button";
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "./../components/ui/field";
-import { Input } from "./../components/ui/input";
-import { loginSchema } from "./../schemas/zod.ts";
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import InputPassword from "@/components/shadcn-studio/input/input-26.tsx";
+import { loginSchema } from "./../../../lib/zod.ts";
 
-function Password() {
+function LoginPage() {
   console.log(yellowLine);
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -80,7 +81,7 @@ function Password() {
                 >
                   Senha
                 </FieldLabel>
-                <Input {...field} id={field.name} />
+		<InputPassword/>
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
@@ -107,4 +108,4 @@ function Password() {
   );
 }
 
-export default Password;
+export default LoginPage;

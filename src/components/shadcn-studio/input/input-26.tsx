@@ -1,21 +1,17 @@
-'use client'
-
 import { useId, useState } from 'react'
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 
-const InputPasswordDemo = () => {
+const InputPassword = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   const id = useId()
 
   return (
     <div className='w-full max-w-xs space-y-2'>
-      <Label htmlFor={id}>Password input</Label>
       <div className='relative'>
         <Input id={id} type={isVisible ? 'text' : 'password'} placeholder='Password' className='pr-9' />
         <Button
@@ -32,4 +28,4 @@ const InputPasswordDemo = () => {
   )
 }
 
-export default InputPasswordDemo
+export default InputPassword
