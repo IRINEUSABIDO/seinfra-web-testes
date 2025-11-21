@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, set, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
-import { userRegisterSchema } from "@/services/zodSchemas";
+import { registerSchema } from "@/services/zodSchemas";
 
 import ConectaSeinfraIcon from "@/assets/ConectaSeinfra.svg";
 import LogoPrefeitura from "@/assets/LogoPrefeitura.svg";
@@ -19,14 +19,23 @@ import {
 import { Input } from "@/components/ui/input";
 import PasswordInput from "@/components/ui/password-input";
 
-function LoginPage() {
+function RegisterPage() {
   const [step, setStep] = useState(0);
 
-  const form = useForm<z.infer<typeof userRegisterSchema>>({
-    resolver: zodResolver(userRegisterSchema),
+  const form = useForm<z.infer<typeof registerSchema>>({
+    defaultValues: {
+      cpf: "",
+      name: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    },
+    resolver: zodResolver(registerSchema),
   });
-  function onSubmit(data: z.infer<typeof userRegisterSchema>) {
+
+  function onSubmit(data: z.infer<typeof registerSchema>) {
     if (step < 1) {
+      console.log(step);
       setStep(step + 1);
     } else {
       console.log(data);
@@ -106,15 +115,19 @@ function LoginPage() {
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
-                  <Button
-                    type="submit"
-                    className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
-                  >
-                    Continuar
-                  </Button>
                 </Field>
               )}
             />
+            <Button
+              type="submit"
+              className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+              onClick={async () => {
+                const ok = await form.trigger(["name", "phone", "cpf"]);
+                if (ok) setStep(1);
+              }}
+            >
+              Continuar
+            </Button>
           </FieldGroup>
         )}
         {/* segundo passo */}
@@ -157,15 +170,19 @@ function LoginPage() {
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
-                  <Button
-                    type="submit"
-                    className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
-                  >
-                    Continuar
-                  </Button>
                 </Field>
               )}
             />
+            <Button
+              type="submit"
+              className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+              onClick={async () => {
+                const ok = await form.trigger(["password", "confirmPassword"]);
+                if (ok) form.handleSubmit(onSubmit)();
+              }}
+            >
+              Continuar
+            </Button>
           </FieldGroup>
         )}
 
@@ -185,4 +202,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;

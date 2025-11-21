@@ -16,7 +16,7 @@ export default function PasswordInput({
   return (
     <div className="relative max-w-[600px]">
       <Input
-        className={cn("pr-9", className)}
+        className={cn("pe-9", className)}
         {...props}
         type={isVisible ? "text" : "password"}
       />

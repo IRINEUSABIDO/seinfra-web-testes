@@ -2,30 +2,56 @@ import z from "zod";
 
 export const userLoginSchema = z.object({
   password: z
-    .string()
+    .string({
+      error: (issue) =>
+        issue.input === undefined
+          ? "O campo deve ser preenchido"
+          : "Input invalido",
+    })
     .min(8, { message: "A senha deve conter no mínimo 8 caracteres" }),
   cpf: z
-    .string()
+    .string({
+      error: (issue) =>
+        issue.input === undefined
+          ? "O campo deve ser preenchido"
+          : "Input invalido",
+    })
     .min(14, { message: "CPF Invalido" })
     .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, { message: "CPF inválido" }),
 });
-export const userRegisterSchema = z
+export const registerSchema = z
   .object({
     password: z
-      .string()
-      .min(8, { message: "A senha deve conter no mínimo 8 caracteres" })
-      .optional(),
-    confirmPassword: z
-      .string()
-      .min(8, { message: "A senha deve conter no mínimo 8 caracteres" })
-      .optional(),
-    name: z.string(),
+      .string({
+        error: (issue) =>
+          issue.input === undefined
+            ? "O campo deve ser preenchido"
+            : "Input invalido",
+      })
+      .min(8, { message: "A senha deve conter no mínimo 8 caracteres" }),
+    confirmPassword: z.string(),
+    name: z.string({
+      error: (issue) =>
+        issue.input === undefined
+          ? "O campo deve ser preenchido"
+          : "Input invalido",
+    }),
     phone: z
-      .string()
-      .min(9, { message: "Numero invalido" })
+      .string({
+        error: (issue) =>
+          issue.input === undefined
+            ? "O campo deve ser preenchido"
+            : "Input invalido",
+      })
       .regex(/^\d{4}\-\d{4}$/, { message: "Numero invalido" }),
-
-    cpf: z.string().min(14, { message: "CPF Invalido" }),
+    cpf: z
+      .string({
+        error: (issue) =>
+          issue.input === undefined
+            ? "O campo deve ser preenchido"
+            : "Input invalido",
+      })
+      .regex(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, { message: "CPF inválido" }),
   })
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {

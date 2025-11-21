@@ -1,10 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import ConectaSeinfraIcon from "./../../../assets/IconsNewSvgs/ConectaSeinfra.svg";
-import LogoPrefeitura from "./../../../assets/IconsNewSvgs/LogoPrefeitura.svg";
-import pinkLine from "./../../../assets/IconsNewSvgs/pinkLine.svg";
-import yellowLine from "./../../../assets/IconsNewSvgs/yellowLine.svg";
+import ConectaSeinfraIcon from "./../../../assets/ConectaSeinfra.svg";
+import LogoPrefeitura from "./../../../assets/LogoPrefeitura.svg";
+import pinkLine from "./../../../assets/pinkLine.svg";
+import yellowLine from "./../../../assets/yellowLine.svg";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -13,7 +13,6 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import InputPassword from "@/components/shadcn-studio/input/input-26.tsx";
 import { userLoginSchema } from "@/services/zodSchemas";
 
 function LoginPage() {
@@ -40,17 +39,17 @@ function LoginPage() {
       >
         <div className="text-center mt-[5%]">
           <h1 className="text-5xl font-semibold font-manrope text-seinfra-blue-light-700 mb-4">
-            Criar conta
+            Login
           </h1>
 
           <p className="text-seinfra-blue-light-500">
-            Preencha as informações obrigatórias para criar sua conta
+            Informe seu CPF e senha para entrar na sua conta
           </p>
         </div>
         <FieldGroup>
           <Controller
             control={form.control}
-            name="CPF"
+            name="cpf"
             render={({ field, fieldState }) => (
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel
@@ -77,7 +76,7 @@ function LoginPage() {
                 >
                   Senha
                 </FieldLabel>
-                <InputPassword />
+                <Input type="password" />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
