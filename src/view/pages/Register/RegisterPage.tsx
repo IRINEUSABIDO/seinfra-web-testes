@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-/* import { useState } from "react"; */
+import { useState } from "react";
 import { userRegisterSchema } from "@/services/zodSchemas";
 
 import ConectaSeinfraIcon from "@/assets/ConectaSeinfra.svg";
@@ -17,19 +17,20 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import PasswordInput from "@/components/ui/password-input";
 
 function LoginPage() {
+  const [step, setStep] = useState(0);
+
   const form = useForm<z.infer<typeof userRegisterSchema>>({
-    defaultValues: {
-      cpf: "",
-      name: "",
-      phone: "",
-    },
     resolver: zodResolver(userRegisterSchema),
   });
-
-  function onSubmit() {
-    console.log("logado");
+  function onSubmit(data: unknown) {
+    if (step < 1) {
+      setStep(step + 1);
+    } else {
+      console.log(data);
+    }
   }
 
   return (
@@ -51,59 +52,122 @@ function LoginPage() {
             Preencha as informações obrigatórias para criar a sua conta
           </p>
         </div>
-        <FieldGroup className="flex felx-col gap-8">
-          <Controller
-            control={form.control}
-            name="name"
-            render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name} className="max-w-[600px]">
-                  Nome
-                </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-          <Controller
-            control={form.control}
-            name="phone"
-            render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name} className="max-w-[600px]">
-                  Telefone
-                </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-          <Controller
-            control={form.control}
-            name="cpf"
-            render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name} className="max-w-[600px]">
-                  CPF
-                </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-                <Button
-                  type="submit"
-                  className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+        {/*primeiro passo*/}
+        {step === 0 && (
+          <FieldGroup className="flex felx-col gap-8">
+            <Controller
+              control={form.control}
+              name="name"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
                 >
-                  Continuar
-                </Button>
-              </Field>
-            )}
-          />
-        </FieldGroup>
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    Nome
+                  </FieldLabel>
+                  <Input {...field} id={field.name} className="max-w-[600px]" />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="phone"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    Telefone
+                  </FieldLabel>
+                  <Input {...field} id={field.name} className="max-w-[600px]" />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="cpf"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    CPF
+                  </FieldLabel>
+                  <Input {...field} id={field.name} className="max-w-[600px]" />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                  <Button
+                    type="submit"
+                    className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+                  >
+                    Continuar
+                  </Button>
+                </Field>
+              )}
+            />
+          </FieldGroup>
+        )}
+        {/* segundo passo */}
+        {step === 1 && (
+          <FieldGroup className="flex felx-col gap-8">
+            <Controller
+              control={form.control}
+              name="password"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    Senha
+                  </FieldLabel>
+                  <Input {...field} id={field.name} className="max-w-[600px]" />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="confirmPassword"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    Confirmar senha
+                  </FieldLabel>
+                  <PasswordInput
+                    {...field}
+                    id={field.name}
+                    className="max-w-[600px]"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                  <Button
+                    type="submit"
+                    className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+                  >
+                    Continuar
+                  </Button>
+                </Field>
+              )}
+            />
+          </FieldGroup>
+        )}
 
         <footer className="flex mt-4 text-center justify-center flex-col gap-8 items-center">
           <div className="flex items-center justify-center mt-[5%] mb-[5%] gap-y-12 gap-x-24 sm:flex-row flex-col">
