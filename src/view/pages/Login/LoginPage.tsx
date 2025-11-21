@@ -14,21 +14,17 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import InputPassword from "@/components/shadcn-studio/input/input-26.tsx";
-import { loginSchema } from "./../../../lib/zod.ts";
+import { userLoginSchema } from "@/services/zodSchemas";
 
 function LoginPage() {
   console.log(yellowLine);
 
-  const form = useForm<z.infer<typeof loginSchema>>({
-    defaultValues: {
-      password: "",
-      CPF: "",
-    },
-    resolver: zodResolver(loginSchema),
+  const form = useForm<z.infer<typeof userLoginSchema>>({
+    resolver: zodResolver(userLoginSchema),
   });
 
-  function onSubmit() {
-    console.log("patapim");
+  function onSubmit(data: z.infer<typeof userLoginSchema>) {
+    console.log(data);
   }
 
   return (
@@ -81,7 +77,7 @@ function LoginPage() {
                 >
                   Senha
                 </FieldLabel>
-		<InputPassword/>
+                <InputPassword />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}

@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const userloginSchema = z.object({
+export const userLoginSchema = z.object({
   password: z
     .string()
     .min(8, { message: "A senha deve conter no mínimo 8 caracteres" }),

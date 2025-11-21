@@ -25,7 +25,7 @@ function LoginPage() {
   const form = useForm<z.infer<typeof userRegisterSchema>>({
     resolver: zodResolver(userRegisterSchema),
   });
-  function onSubmit(data: unknown) {
+  function onSubmit(data: z.infer<typeof userRegisterSchema>) {
     if (step < 1) {
       setStep(step + 1);
     } else {
