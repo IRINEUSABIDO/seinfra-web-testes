@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-/* import { useState } from "react"; */
 import { userRegisterSchema } from "@/services/zodSchemas";
 
 import ConectaSeinfraIcon from "@/assets/ConectaSeinfra.svg";
@@ -16,14 +15,15 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
+import PasswordInput from "@/components/ui/password-input";
 import { Input } from "@/components/ui/input";
+import { Link } from "@tanstack/react-router";
 
-function LoginPage() {
+function PasswordRegisterPage() {
   const form = useForm<z.infer<typeof userRegisterSchema>>({
     defaultValues: {
-      cpf: "",
-      name: "",
-      phone: "",
+      password: "",
+      confirmPassword: "",
     },
     resolver: zodResolver(userRegisterSchema),
   });
@@ -54,13 +54,18 @@ function LoginPage() {
         <FieldGroup className="flex felx-col gap-8">
           <Controller
             control={form.control}
-            name="name"
+            name="password"
             render={({ field, fieldState }) => (
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel htmlFor={field.name} className="max-w-[600px]">
-                  Nome
+                  Senha
                 </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
+                <Input
+                  {...field}
+                  id={field.name}
+                  type="password"
+                  className="max-w-[600px]"
+                />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
@@ -69,35 +74,21 @@ function LoginPage() {
           />
           <Controller
             control={form.control}
-            name="phone"
+            name="confirmPassword"
             render={({ field, fieldState }) => (
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel htmlFor={field.name} className="max-w-[600px]">
-                  Telefone
+                  Confirmar Senha
                 </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
+                <PasswordInput
+                  {...field}
+                  id={field.name}
+                  className="max-w-[600px]"
+                />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
-              </Field>
-            )}
-          />
-          <Controller
-            control={form.control}
-            name="cpf"
-            render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name} className="max-w-[600px]">
-                  CPF
-                </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-                <Button
-                  type="submit"
-                  className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
-                >
+                <Button className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]">
                   Continuar
                 </Button>
               </Field>
@@ -121,4 +112,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default PasswordRegisterPage;
