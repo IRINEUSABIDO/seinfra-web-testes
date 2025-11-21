@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PasswordRegisterRouteImport } from './routes/passwordRegister'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as IndexDanilaRouteImport } from './routes/indexDanila'
 import { Route as IndexRouteImport } from './routes/index'
 
 const RegisterRoute = RegisterRouteImport.update({
@@ -29,6 +30,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndexDanilaRoute = IndexDanilaRouteImport.update({
+  id: '/indexDanila',
+  path: '/indexDanila',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/indexDanila': typeof IndexDanilaRoute
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/indexDanila': typeof IndexDanilaRoute
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
@@ -50,20 +58,28 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/indexDanila': typeof IndexDanilaRoute
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/passwordRegister' | '/register'
+  fullPaths: '/' | '/indexDanila' | '/login' | '/passwordRegister' | '/register'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/passwordRegister' | '/register'
-  id: '__root__' | '/' | '/login' | '/passwordRegister' | '/register'
+  to: '/' | '/indexDanila' | '/login' | '/passwordRegister' | '/register'
+  id:
+    | '__root__'
+    | '/'
+    | '/indexDanila'
+    | '/login'
+    | '/passwordRegister'
+    | '/register'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IndexDanilaRoute: typeof IndexDanilaRoute
   LoginRoute: typeof LoginRoute
   PasswordRegisterRoute: typeof PasswordRegisterRoute
   RegisterRoute: typeof RegisterRoute
@@ -92,6 +108,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/indexDanila': {
+      id: '/indexDanila'
+      path: '/indexDanila'
+      fullPath: '/indexDanila'
+      preLoaderRoute: typeof IndexDanilaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +127,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IndexDanilaRoute: IndexDanilaRoute,
   LoginRoute: LoginRoute,
   PasswordRegisterRoute: PasswordRegisterRoute,
   RegisterRoute: RegisterRoute,

@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "@tanstack/react-router";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import ConectaSeinfraIcon from "./../../../assets/ConectaSeinfra.svg";
@@ -31,7 +32,7 @@ function LoginPage() {
       <img
         src={pinkLine}
         alt="Linha Rosa Background"
-        className="absolute left-0 top-0"
+        className="absolute left-0 top-0 z-[-10]"
       />
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -54,11 +55,11 @@ function LoginPage() {
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel
                   htmlFor={field.name}
-                  className="text-center w-full justify-self-start max-w-[600px]"
+                  className="text-center w-full justify-self-start max-w-[600px] font-semibold text-seinfra-blue-light-400"
                 >
                   CPF
                 </FieldLabel>
-                <Input {...field} id={field.name} />
+                <Input {...field} id={field.name} className="max-w-[600px]" />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
@@ -72,22 +73,28 @@ function LoginPage() {
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel
                   htmlFor={field.name}
-                  className="text-center w-full justify-self-start max-w-[600px]"
+                  className="text-center w-full justify-self-start font-semibold max-w-[600px] text-seinfra-blue-light-400"
                 >
                   Senha
                 </FieldLabel>
-                <Input type="password" />
+                <Input type="password" className="max-w-[600px]" />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
                 <Button className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]">
-                  Continuar
+                  Entrar
                 </Button>
               </Field>
             )}
           />
         </FieldGroup>
         <footer className="">
+          <h1 className="text-seinfra-blue-light-500 text-center font-semibold">
+            Não tem uma conta? <br />
+            <Link to="/register" className="text-seinfra-yellow-300 underline">
+              Criar conta
+            </Link>
+          </h1>
           <div className="flex items-center justify-center mt-[5%] mb-[5%] gap-y-12 gap-x-24 sm:flex-row">
             <img src={ConectaSeinfraIcon} alt="Logo do Conecta Seinfra" />
             <img src={LogoPrefeitura} alt="LogoPrefeitura de Nova Russas" />
@@ -96,7 +103,7 @@ function LoginPage() {
         <img
           src={yellowLine}
           alt="Yellow Line"
-          className="absolute right-0 bottom-0"
+          className="absolute right-0 -bottom-10 z-[-10]"
         />
       </form>
     </div>

@@ -30,12 +30,14 @@ export const registerSchema = z
       })
       .min(8, { message: "A senha deve conter no mínimo 8 caracteres" }),
     confirmPassword: z.string(),
-    name: z.string({
-      error: (issue) =>
-        issue.input === undefined
-          ? "O campo deve ser preenchido"
-          : "Input invalido",
-    }),
+    name: z
+      .string({
+        error: (issue) =>
+          issue.input === undefined
+            ? "O campo deve ser preenchido"
+            : "Input invalido",
+      })
+      .min(1, { message: "O campo deve ser preenchido" }),
     phone: z
       .string({
         error: (issue) =>

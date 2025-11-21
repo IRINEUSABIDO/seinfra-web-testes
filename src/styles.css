@@ -14,7 +14,7 @@ body {
 @theme inline {
   --font-manrope: "Manrope", sans-serif;
 
-    /* seinfra colors*/
+	/* seinfra colors*/
   
   --color-seinfra-blue-light-50:  #e9f6f7;
   --color-seinfra-blue-light-100: #bbe4e7;
@@ -59,6 +59,15 @@ body {
   --color-seinfra-blue-700: #2c4377;
   --color-seinfra-blue-800: #22345c;
   --color-seinfra-blue-900: #1a2746;
+
+
+	/* opacity changes */
+
+  --color-seinfra-blue-light-700-60: rgba(26, 118, 125, 0.6);
+  --color-seinfra-blue-light-700-70: rgba(26, 118, 125, 0.7);
+  --color-seinfra-blue-light-600-60: rgba(33, 153, 160, 0.6);
+  --color-seinfra-blue-light-600-60: rgba(33, 153, 160, 0.7);
+
 
 
   --radius-sm: calc(var(--radius) - 4px);

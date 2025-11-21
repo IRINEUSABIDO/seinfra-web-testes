@@ -115,19 +115,19 @@ function RegisterPage() {
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
+                  <Button
+                    type="submit"
+                    className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+                    onClick={async () => {
+                      const ok = await form.trigger(["name", "phone", "cpf"]);
+                      if (ok) setStep(1);
+                    }}
+                  >
+                    Continuar
+                  </Button>
                 </Field>
               )}
             />
-            <Button
-              type="submit"
-              className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
-              onClick={async () => {
-                const ok = await form.trigger(["name", "phone", "cpf"]);
-                if (ok) setStep(1);
-              }}
-            >
-              Continuar
-            </Button>
           </FieldGroup>
         )}
         {/* segundo passo */}
@@ -170,19 +170,22 @@ function RegisterPage() {
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
+                  <Button
+                    type="submit"
+                    className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+                    onClick={async () => {
+                      const ok = await form.trigger([
+                        "password",
+                        "confirmPassword",
+                      ]);
+                      if (ok) form.handleSubmit(onSubmit)();
+                    }}
+                  >
+                    Continuar
+                  </Button>
                 </Field>
               )}
             />
-            <Button
-              type="submit"
-              className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
-              onClick={async () => {
-                const ok = await form.trigger(["password", "confirmPassword"]);
-                if (ok) form.handleSubmit(onSubmit)();
-              }}
-            >
-              Continuar
-            </Button>
           </FieldGroup>
         )}
 
@@ -195,7 +198,7 @@ function RegisterPage() {
         <img
           src={yellowLine}
           alt="Yellow Line"
-          className="absolute right-0 bottom-0"
+          className="absolute -right-2 sm:right-0 -bottom-10"
         />
       </form>
     </div>
