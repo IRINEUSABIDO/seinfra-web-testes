@@ -55,7 +55,7 @@ function LoginPage() {
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel
                   htmlFor={field.name}
-                  className="text-center w-full justify-self-start max-w-[600px] font-semibold text-seinfra-blue-light-400"
+                  className="text-center w-full justify-self-start max-w-[600px] font-semibold"
                 >
                   CPF
                 </FieldLabel>
@@ -73,7 +73,7 @@ function LoginPage() {
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel
                   htmlFor={field.name}
-                  className="text-center w-full justify-self-start font-semibold max-w-[600px] text-seinfra-blue-light-400"
+                  className="text-center w-full justify-self-start font-semibold max-w-[600px]"
                 >
                   Senha
                 </FieldLabel>
