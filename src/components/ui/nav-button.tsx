@@ -21,7 +21,7 @@ export default function NavButton({ Icon, Page, Label, className }: Props) {
       <Link to={Page}>
         <p>{Label}</p>
       </Link>
-      <Icon className="size-5 text-seinfra-blue-light-500" />
+      <Icon className="size-5 lg:size-7 text-seinfra-blue-light-500" />
     </div>
   );
 }

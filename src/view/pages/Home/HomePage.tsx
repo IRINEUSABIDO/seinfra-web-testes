@@ -16,9 +16,13 @@ function HomePage() {
         alt="Linha Rosa Background"
         className="absolute left-0 top-0"
       />
-      <main className="h-full w-full border-8 flex justify-center items-center">
-        <div>
-          <img src={ConectaSeinfraIcon} alt="Logo do Conecta Seinfra" />
+      <main className="h-full w-full flex justify-center items-center">
+        <div className="flex flex-col gap-16 items-center justify-center">
+          <img
+            src={ConectaSeinfraIcon}
+            alt="Logo do Conecta Seinfra"
+            className="size-[60%] sm:size-[40%]"
+          />
           <div className="flex flex-col items-center gap-6">
             <NavButton
               Page="/register"
@@ -39,7 +43,11 @@ function HomePage() {
               className="w-[90vw] max-w-[600px]"
             />
           </div>
-          <img src={LogoPrefeitura} alt="LogoPrefeitura de Nova Russas" />
+          <img
+            src={LogoPrefeitura}
+            alt="LogoPrefeitura de Nova Russas"
+            className="size-[60%] sm:size-[40%]"
+          />
         </div>
       </main>
       <img
