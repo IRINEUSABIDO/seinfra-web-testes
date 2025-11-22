@@ -31,7 +31,7 @@ function HomePage() {
               className="w-[90vw] max-w-[600px]"
             />{" "}
             <NavButton
-              Page="/login"
+              Page="/solicitacoes"
               Icon={History}
               Label="Minhas Solicitações"
               className="w-[90vw] max-w-[600px]"

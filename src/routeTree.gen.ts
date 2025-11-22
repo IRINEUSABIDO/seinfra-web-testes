@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SolicitacoesRouteImport } from './routes/solicitacoes'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PasswordRegisterRouteImport } from './routes/passwordRegister'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexDanilaRouteImport } from './routes/indexDanila'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SolicitacoesRoute = SolicitacoesRouteImport.update({
+  id: '/solicitacoes',
+  path: '/solicitacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
+  '/solicitacoes': typeof SolicitacoesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
+  '/solicitacoes': typeof SolicitacoesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +70,25 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
+  '/solicitacoes': typeof SolicitacoesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/indexDanila' | '/login' | '/passwordRegister' | '/register'
+  fullPaths:
+    | '/'
+    | '/indexDanila'
+    | '/login'
+    | '/passwordRegister'
+    | '/register'
+    | '/solicitacoes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/indexDanila' | '/login' | '/passwordRegister' | '/register'
+  to:
+    | '/'
+    | '/indexDanila'
+    | '/login'
+    | '/passwordRegister'
+    | '/register'
+    | '/solicitacoes'
   id:
     | '__root__'
     | '/'
@@ -75,6 +96,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/passwordRegister'
     | '/register'
+    | '/solicitacoes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,10 +105,18 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PasswordRegisterRoute: typeof PasswordRegisterRoute
   RegisterRoute: typeof RegisterRoute
+  SolicitacoesRoute: typeof SolicitacoesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/solicitacoes': {
+      id: '/solicitacoes'
+      path: '/solicitacoes'
+      fullPath: '/solicitacoes'
+      preLoaderRoute: typeof SolicitacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -131,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PasswordRegisterRoute: PasswordRegisterRoute,
   RegisterRoute: RegisterRoute,
+  SolicitacoesRoute: SolicitacoesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
