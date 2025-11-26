@@ -17,9 +17,11 @@ import { Input } from "@/components/ui/input";
 import { userLoginSchema } from "@/services/zodSchemas";
 
 function LoginPage() {
-  console.log(yellowLine);
-
   const form = useForm<z.infer<typeof userLoginSchema>>({
+    defaultValues: {
+      password: "",
+      cpf: "",
+    },
     resolver: zodResolver(userLoginSchema),
   });
 
@@ -28,15 +30,15 @@ function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen h-auto flex-col overflow-x-hidden ">
+    <div className="flex min-h-[100dvh] h-auto flex-col overflow-x-hidden ">
       <img
         src={pinkLine}
         alt="Linha Rosa Background"
-        className="absolute left-0 top-0 z-[-10]"
+        className="absolute z-[-10] left-0 -top-10"
       />
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex gap-8 flex-col justify-center items-center w-screen h-auto min-h-screen"
+        className="flex gap-8 flex-col justify-center items-center"
       >
         <div className="text-center mt-[5%]">
           <h1 className="text-5xl font-semibold font-manrope text-seinfra-blue-light-700 mb-4">
@@ -55,11 +57,16 @@ function LoginPage() {
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel
                   htmlFor={field.name}
-                  className="text-center w-full justify-self-start max-w-[600px] font-semibold"
+                  className="max-w-[600px] font-semibold"
                 >
                   CPF
                 </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
+                <Input
+                  {...field}
+                  id={field.name}
+                  autoComplete="username"
+                  className="max-w-[600px]"
+                />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
@@ -73,11 +80,17 @@ function LoginPage() {
               <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
                 <FieldLabel
                   htmlFor={field.name}
-                  className="text-center w-full justify-self-start font-semibold max-w-[600px]"
+                  className="font-semibold max-w-[600px]"
                 >
                   Senha
                 </FieldLabel>
-                <Input type="password" className="max-w-[600px]" />
+                <Input
+                  {...field}
+                  type="password"
+                  id={field.name}
+                  autoComplete="current-password"
+                  className="max-w-[600px]"
+                />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
@@ -88,7 +101,7 @@ function LoginPage() {
             )}
           />
         </FieldGroup>
-        <footer className="">
+        <footer>
           <h1 className="text-seinfra-blue-light-500 text-center font-semibold">
             Não tem uma conta? <br />
             <Link to="/register" className="text-seinfra-yellow-300 underline">
@@ -103,7 +116,7 @@ function LoginPage() {
         <img
           src={yellowLine}
           alt="Yellow Line"
-          className="absolute right-0 -bottom-10 z-[-10]"
+          className="absolute -right-2 sm:right-0 -bottom-10"
         />
       </form>
     </div>
