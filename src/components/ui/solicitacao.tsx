@@ -20,16 +20,13 @@ export default function SolicitacaoCard({
   Time,
 }: Props) {
   return (
-    <div
-      className={cn(
-        "bg-white rounded-3xl",
-        "mx-2",
-        "flex w-[90vw] lg:w-[90vw]",
-      )}
-    >
+    <div className={cn("bg-white rounded-3xl", "flex w-[90vw] lg:w-[90vw]")}>
       <div
         className={cn(
-          "bg-green-500 text-transparent rounded-tl-3xl rounded-bl-3xl",
+          `${State === "Finalizada" && "bg-green-500"}`,
+          `${State === "Em execução" && "bg-yellow-500"}`,
+          `${State === "Excluída" && "bg-red-500"}`,
+          "text-transparent rounded-tl-3xl rounded-bl-3xl",
           "w-4",
         )}
       >
@@ -53,7 +50,14 @@ export default function SolicitacaoCard({
         </div>
         {/* other stuff */}
         <div className="flex flex-col justify-between items-end">
-          <button className="bg-green-500 py-2 px-4 text-white text-[0.7rem] rounded-sm">
+          <button
+            className={cn(
+              `${State === "Finalizada" && "bg-green-500"}`,
+              `${State === "Excluída" && "bg-red-500"}`,
+              `${State === "Em execução" && "bg-yellow-500"}`,
+              "py-2 px-4 text-white text-[0.7rem] rounded-sm",
+            )}
+          >
             {State}
           </button>
           <p>{Time}</p>

@@ -9,7 +9,7 @@ export default function SolicitacoesPage() {
         className={cn(
           "bg-gray-100 text-seinfra-blue-light-400 font-semibold",
           "flex flex-col items-center justify-center gap-8",
-          "min-h-[100dvh] h-auto w-screen",
+          "min-h-[100dvh] h-auto w-screen"
         )}
       >
         <h1 className="mt-24 text-2xl lg:text-3xl">Minhas Solicitações</h1>

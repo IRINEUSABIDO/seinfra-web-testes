@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SolicitacoesRouteImport } from './routes/solicitacoes'
+import { Route as RegistrarOrdemRouteImport } from './routes/registrarOrdem'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PasswordRegisterRouteImport } from './routes/passwordRegister'
 import { Route as LoginRouteImport } from './routes/login'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const SolicitacoesRoute = SolicitacoesRouteImport.update({
   id: '/solicitacoes',
   path: '/solicitacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistrarOrdemRoute = RegistrarOrdemRouteImport.update({
+  id: '/registrarOrdem',
+  path: '/registrarOrdem',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
+  '/registrarOrdem': typeof RegistrarOrdemRoute
   '/solicitacoes': typeof SolicitacoesRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
+  '/registrarOrdem': typeof RegistrarOrdemRoute
   '/solicitacoes': typeof SolicitacoesRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/passwordRegister': typeof PasswordRegisterRoute
   '/register': typeof RegisterRoute
+  '/registrarOrdem': typeof RegistrarOrdemRoute
   '/solicitacoes': typeof SolicitacoesRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/passwordRegister'
     | '/register'
+    | '/registrarOrdem'
     | '/solicitacoes'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/passwordRegister'
     | '/register'
+    | '/registrarOrdem'
     | '/solicitacoes'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/passwordRegister'
     | '/register'
+    | '/registrarOrdem'
     | '/solicitacoes'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PasswordRegisterRoute: typeof PasswordRegisterRoute
   RegisterRoute: typeof RegisterRoute
+  RegistrarOrdemRoute: typeof RegistrarOrdemRoute
   SolicitacoesRoute: typeof SolicitacoesRoute
 }
 
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/solicitacoes'
       fullPath: '/solicitacoes'
       preLoaderRoute: typeof SolicitacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registrarOrdem': {
+      id: '/registrarOrdem'
+      path: '/registrarOrdem'
+      fullPath: '/registrarOrdem'
+      preLoaderRoute: typeof RegistrarOrdemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PasswordRegisterRoute: PasswordRegisterRoute,
   RegisterRoute: RegisterRoute,
+  RegistrarOrdemRoute: RegistrarOrdemRoute,
   SolicitacoesRoute: SolicitacoesRoute,
 }
 export const routeTree = rootRouteImport
