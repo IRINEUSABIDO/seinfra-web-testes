@@ -30,3 +30,10 @@ export const registerSchema = z
       });
     }
   });
+
+  export const orderRegisterSchema = z.object({
+    neighborhood: z.string().min(1, { message:"O campo deve ser preenchido"}),
+    street:  z.string().min(1, { message:"O campo deve ser preenchido"}),
+    reference: z.string().min(1, { message:"O campo deve ser preenchido"}),
+    desc: z.string().min(1, { message:"O campo deve ser preenchido"})
+  })
