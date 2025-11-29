@@ -54,19 +54,14 @@ function LoginPage() {
             control={form.control}
             name="cpf"
             render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
+              <Field orientation={"seinfra"} data-invalid={fieldState.invalid}>
                 <FieldLabel
                   htmlFor={field.name}
                   className="max-w-[600px] font-semibold"
                 >
                   CPF
                 </FieldLabel>
-                <Input
-                  {...field}
-                  id={field.name}
-                  autoComplete="username"
-                  className="max-w-[600px]"
-                />
+                <Input {...field} id={field.name} autoComplete="username" />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
@@ -77,7 +72,7 @@ function LoginPage() {
             control={form.control}
             name="password"
             render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
+              <Field orientation={"seinfra"} data-invalid={fieldState.invalid}>
                 <FieldLabel
                   htmlFor={field.name}
                   className="font-semibold max-w-[600px]"
@@ -87,10 +82,8 @@ function LoginPage() {
                 <Input
                   {...field}
                   type="password"
-                  variant="default"
                   id={field.name}
                   autoComplete="current-password"
-                  className="max-w-[600px]"
                 />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
