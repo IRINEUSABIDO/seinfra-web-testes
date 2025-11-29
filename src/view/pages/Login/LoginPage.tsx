@@ -87,6 +87,7 @@ function LoginPage() {
                 <Input
                   {...field}
                   type="password"
+                  variant="default"
                   id={field.name}
                   autoComplete="current-password"
                   className="max-w-[600px]"
@@ -94,9 +95,7 @@ function LoginPage() {
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
                 )}
-                <Button className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]">
-                  Entrar
-                </Button>
+                <Button className="mt-14">Entrar</Button>
               </Field>
             )}
           />

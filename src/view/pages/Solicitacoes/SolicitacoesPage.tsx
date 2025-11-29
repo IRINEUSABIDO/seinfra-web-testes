@@ -1,4 +1,4 @@
-import SolicitacaoCard from "@/components/ui/solicitacao";
+import SolicitacaoCard from "@/components/solicitacao";
 import logoPrefeitura from "./../../../assets/LogoPrefeitura.svg";
 import { cn } from "@/lib/utils";
 

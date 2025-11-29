@@ -24,7 +24,7 @@ function HomePageDanila() {
           />
           <div className="flex flex-col gap-6">
             <NavButtonDanila
-              Page="/register"
+              Page="/login"
               Desc="Informe uma nova O.S"
               Icon={RoundedFile}
               Label="Nova Ordem de Serviço"

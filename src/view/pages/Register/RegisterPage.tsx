@@ -1,57 +1,47 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "@tanstack/react-router";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import ConectaSeinfraIcon from "./../../../assets/ConectaSeinfra.svg";
-import LogoPrefeitura from "./../../../assets/LogoPrefeitura.svg";
-import pinkLine from "./../../../assets/pinkLine.svg";
-import yellowLine from "./../../../assets/yellowLine.svg";
+import { useState } from "react";
+import { registerSchema } from "@/services/zodSchemas";
+import ConectaSeinfraIcon from "@/assets/ConectaSeinfra.svg";
+import LogoPrefeitura from "@/assets/LogoPrefeitura.svg";
+import pinkLine from "@/assets/pinkLine.svg";
+import yellowLine from "@/assets/yellowLine.svg";
 import { Button } from "@/components/ui/button";
-import { Camera } from "lucide-react";
-import { Keyboard } from "lucide-react";
-import { MapPin } from "lucide-react";
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
-import { cn } from "@/lib/utils";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { orderRegisterSchema } from "@/services/zodSchemas";
+import PasswordInput from "@/components/password-input";
 
-function OrderRegisterPage() {
-  const form = useForm<z.infer<typeof orderRegisterSchema>>({
+function RegisterPage() {
+  const [step, setStep] = useState(0);
+
+  const form = useForm<z.infer<typeof registerSchema>>({
     defaultValues: {
-      neighborhood: "",
-      street: "",
-      reference: "",
-      desc: "",
+      cpf: "",
+      name: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
     },
-    resolver: zodResolver(orderRegisterSchema),
+    resolver: zodResolver(registerSchema),
   });
 
-  function onSubmit(data: z.infer<typeof orderRegisterSchema>) {
-    console.log(data);
+  function onSubmit(data: z.infer<typeof registerSchema>) {
+    if (step < 1) {
+      console.log(step);
+      setStep(step + 1);
+    } else {
+      console.log(data);
+    }
   }
 
   return (
-    <div className="flex min-h-dvh h-auto flex-col overflow-x-hidden ">
+    <div className="relative flex min-h-screen h-auto font-semibold flex-col overflow-hidden">
       <img
         src={pinkLine}
         alt="Linha Rosa Background"
@@ -62,130 +52,145 @@ function OrderRegisterPage() {
         className="flex gap-8 flex-col justify-center items-center"
       >
         <div className="text-center mt-20">
-          <h1 className="text-5xl font-semibold font-manrope text-seinfra-blue-light-700 mb-4">
-            Registrar Ordem
+          <h1 className="text-5xl text-seinfra-blue-light-700 mb-4 px-4">
+            Criar conta
           </h1>
+          <p className="text-seinfra-blue-light-500 px-4">
+            Preencha as informações obrigatórias para criar a sua conta
+          </p>
         </div>
-        <FieldGroup>
-          <div className="w-full flex justify-center">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-[90vw] max-w-[600px]">
-                  Categoria
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[31.5vw]" align="start">
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>Iluminação</DropdownMenuItem>
-                  <DropdownMenuItem>Poda de Árvore</DropdownMenuItem>
-                  <DropdownMenuItem>Buraco na Pista</DropdownMenuItem>
-                  <DropdownMenuItem>Asfaltar</DropdownMenuItem>
-                  <DropdownMenuItem>Outros</DropdownMenuItem>
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-
-          <Controller
-            control={form.control}
-            name="neighborhood"
-            render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
-                <FieldLabel
-                  htmlFor={field.name}
-                  className="max-w-[600px] font-semibold"
+        {/*primeiro passo*/}
+        {step === 0 && (
+          <FieldGroup className="flex felx-col gap-8">
+            <Controller
+              control={form.control}
+              name="name"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
                 >
-                  Bairro
-                </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-          <Controller
-            control={form.control}
-            name="street"
-            render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
-                <FieldLabel
-                  htmlFor={field.name}
-                  className="max-w-[600px] font-semibold"
-                >
-                  Rua
-                </FieldLabel>
-                <Input {...field} id={field.name} className="max-w-[600px]" />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-          <Controller
-            control={form.control}
-            name="reference"
-            render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
-                <FieldLabel
-                  htmlFor={field.name}
-                  className="max-w-[600px] font-semibold"
-                >
-                  Ponto de referência
-                </FieldLabel>
-                <Input
-                  {...field}
-                  id={field.name}
-                  autoComplete="current-password"
-                  className="max-w-[600px]"
-                />
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
-              </Field>
-            )}
-          />
-          <Controller
-            control={form.control}
-            name="desc"
-            render={({ field, fieldState }) => (
-              <Field orientation={"vertical"} data-invalid={fieldState.invalid}>
-                <div className="relative max-w-[600px] w-full">
-                  <FieldLabel
-                    htmlFor={field.name}
-                    className="max-w-[600px] font-semibold"
-                  >
-                    Descreva o ocorrido
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    Nome
                   </FieldLabel>
-                  <Textarea
-                    {...field}
-                    className={cn(
-                      "max-w-[600px] border-seinfra-blue-light-200 w-full min-w-0 rounded-3xl pb-38",
-                      "resize-none",
-                    )}
-                  />
-                  <button
-                    type="button"
-                    className="absolute left-10 -bottom-2 -translate-6 bg-seinfra-blue-light-400 text-white cursor-pointer rounded-2xl p-2"
+                  <Input {...field} id={field.name} />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="phone"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    Telefone
+                  </FieldLabel>
+                  <Input {...field} id={field.name} className="max-w-[600px]" />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="cpf"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    CPF
+                  </FieldLabel>
+                  <Input {...field} id={field.name} className="max-w-[600px]" />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                  <Button
+                    type="submit"
+                    className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+                    onClick={async () => {
+                      const ok = await form.trigger(["name", "phone", "cpf"]);
+                      if (ok) setStep(1);
+                    }}
                   >
-                    <Camera></Camera>
-                  </button>
-                </div>
-                {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]} />
-                )}
+                    Continuar
+                  </Button>
+                </Field>
+              )}
+            />
+          </FieldGroup>
+        )}
+        {/* segundo passo */}
+        {step === 1 && (
+          <FieldGroup className="flex felx-col gap-8">
+            <Controller
+              control={form.control}
+              name="password"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    Senha
+                  </FieldLabel>
+                  <Input {...field} id={field.name} className="max-w-[600px]" />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              control={form.control}
+              name="confirmPassword"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name} className="max-w-[600px]">
+                    Confirmar senha
+                  </FieldLabel>
+                  <PasswordInput
+                    {...field}
+                    id={field.name}
+                    className="max-w-[600px]"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                  <Button
+                    type="submit"
+                    className="px-4 py-3 mt-14 rounded-3xl max-w-[600px]"
+                    onClick={async () => {
+                      const ok = await form.trigger([
+                        "password",
+                        "confirmPassword",
+                      ]);
+                      if (ok) form.handleSubmit(onSubmit)();
+                    }}
+                  >
+                    Continuar
+                  </Button>
+                </Field>
+              )}
+            />
+          </FieldGroup>
+        )}
 
-                <Button className="px-4 py-3 mt-12 rounded-3xl max-w-[600px]">
-                  Entrar
-                </Button>
-              </Field>
-            )}
-          />
-        </FieldGroup>
-        <footer>
-          <div className="flex items-center justify-center mt-[5%] mb-[5%] gap-y-12 gap-x-24 sm:flex-row">
+        <footer className="flex mt-4 text-center justify-center flex-col gap-8 items-center">
+          <div className="flex items-center justify-center mt-12 mb-12 gap-y-12 gap-x-24 sm:flex-row flex-col">
             <img src={ConectaSeinfraIcon} alt="Logo do Conecta Seinfra" />
-            <img src={LogoPrefeitura} alt="LogoPrefeitura de Nova Russas" />
+            <img src={LogoPrefeitura} alt="Logo Prefeitura de Nova Russas" />
           </div>
         </footer>
         <img
@@ -198,4 +203,4 @@ function OrderRegisterPage() {
   );
 }
 
-export default OrderRegisterPage;
+export default RegisterPage;
