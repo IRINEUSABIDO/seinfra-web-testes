@@ -2,11 +2,10 @@ import ConectaSeinfraIcon from "./../../../assets/ConectaSeinfra.svg";
 import LogoPrefeitura from "./../../../assets/LogoPrefeitura.svg";
 import pinkLine from "./../../../assets/pinkLine.svg";
 import yellowLine from "./../../../assets/yellowLine.svg";
-
 import { History } from "lucide-react";
 import { Phone } from "lucide-react";
 import { RoundedFile } from "@/assets/RoundedFile";
-import NavButtonDanila from "@/components/ui/nav-button-danila";
+import NavButtonDanila from "@/components/nav-button-danila";
 
 function HomePageDanila() {
   return (

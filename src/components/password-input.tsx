@@ -1,9 +1,7 @@
 import * as React from "react";
-
-import { Input } from "./input";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { EyeIcon, EyeOff } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 
 export default function PasswordInput({

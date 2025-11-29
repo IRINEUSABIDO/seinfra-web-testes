@@ -102,15 +102,16 @@ function LoginPage() {
           />
         </FieldGroup>
         <footer>
-          <h1 className="text-seinfra-blue-light-500 text-center font-semibold">
-            Não tem uma conta? <br />
+          <div className="flex flex-col text-center font-semibold">
+            <h1 className="text-seinfra-blue-light-500">Não tem uma conta?</h1>
             <Link to="/register" className="text-seinfra-yellow-300 underline">
               Criar conta
             </Link>
-          </h1>
+          </div>
+
           <div className="flex items-center justify-center mt-[5%] mb-[5%] gap-y-12 gap-x-24 sm:flex-row">
             <img src={ConectaSeinfraIcon} alt="Logo do Conecta Seinfra" />
-            <img src={LogoPrefeitura} alt="LogoPrefeitura de Nova Russas" />
+            <img src={LogoPrefeitura} alt="Logo Prefeitura de Nova Russas" />
           </div>
         </footer>
         <img

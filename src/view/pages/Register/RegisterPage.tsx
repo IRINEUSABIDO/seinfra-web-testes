@@ -1,14 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, set, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
 import { registerSchema } from "@/services/zodSchemas";
-
 import ConectaSeinfraIcon from "@/assets/ConectaSeinfra.svg";
 import LogoPrefeitura from "@/assets/LogoPrefeitura.svg";
 import pinkLine from "@/assets/pinkLine.svg";
 import yellowLine from "@/assets/yellowLine.svg";
-
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -17,7 +15,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import PasswordInput from "@/components/ui/password-input";
+import PasswordInput from "@/components/password-input";
 
 function RegisterPage() {
   const [step, setStep] = useState(0);
@@ -47,7 +45,7 @@ function RegisterPage() {
       <img
         src={pinkLine}
         alt="Linha Rosa Background"
-        className="absolute z-[-10] left-0 -top-10"
+        className="absolute -z-10 left-0 -top-10"
       />
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -75,7 +73,7 @@ function RegisterPage() {
                   <FieldLabel htmlFor={field.name} className="max-w-[600px]">
                     Nome
                   </FieldLabel>
-                  <Input {...field} id={field.name} className="max-w-[600px]" />
+                  <Input {...field} id={field.name} />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
@@ -190,9 +188,9 @@ function RegisterPage() {
         )}
 
         <footer className="flex mt-4 text-center justify-center flex-col gap-8 items-center">
-          <div className="flex items-center justify-center mt-[5%] mb-[5%] gap-y-12 gap-x-24 sm:flex-row flex-col">
+          <div className="flex items-center justify-center mt-12 mb-12 gap-y-12 gap-x-24 sm:flex-row flex-col">
             <img src={ConectaSeinfraIcon} alt="Logo do Conecta Seinfra" />
-            <img src={LogoPrefeitura} alt="LogoPrefeitura de Nova Russas" />
+            <img src={LogoPrefeitura} alt="Logo Prefeitura de Nova Russas" />
           </div>
         </footer>
         <img

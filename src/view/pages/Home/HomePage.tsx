@@ -1,9 +1,8 @@
-import NavButton from "@/components/ui/nav-button";
-import ConectaSeinfraIcon from "./../../../assets/ConectaSeinfra.svg";
+import NavButton from "@/components/nav-button";
+import ConectaSeinfraIcon from "@/assets/ConectaSeinfra.svg";
 import LogoPrefeitura from "./../../../assets/LogoPrefeitura.svg";
 import pinkLine from "./../../../assets/pinkLine.svg";
 import yellowLine from "./../../../assets/yellowLine.svg";
-
 import { FileText } from "lucide-react";
 import { History } from "lucide-react";
 import { Keyboard } from "lucide-react";
@@ -45,7 +44,7 @@ function HomePage() {
           </div>
           <img
             src={LogoPrefeitura}
-            alt="LogoPrefeitura de Nova Russas"
+            alt="Logo Prefeitura de Nova Russas"
             className="size-[60%] sm:size-[40%]"
           />
         </div>
