@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "@tanstack/react-router";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import ConectaSeinfraIcon from "./../../../assets/ConectaSeinfra.svg";
@@ -8,8 +7,7 @@ import pinkLine from "./../../../assets/pinkLine.svg";
 import yellowLine from "./../../../assets/yellowLine.svg";
 import { Button } from "@/components/ui/button";
 import { Camera } from "lucide-react";
-import { Keyboard } from "lucide-react";
-import { MapPin } from "lucide-react";
+import { ChevronUp, ChevronDown } from "lucide-react";
 import {
   Field,
   FieldError,
@@ -22,26 +20,31 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { orderRegisterSchema } from "@/services/zodSchemas";
+import { useState } from "react";
 
 function LoginPage() {
+  const [open, setOpen] = useState(false);
+  const categories = [
+    "Iluminação",
+    "Poda de árvore",
+    "Buraco na pista",
+    "Asfaltar",
+    "Outro",
+  ];
+
   const form = useForm<z.infer<typeof orderRegisterSchema>>({
     defaultValues: {
       neighborhood: "",
       street: "",
       reference: "",
       desc: "",
+      category: undefined,
     },
     resolver: zodResolver(orderRegisterSchema),
   });
@@ -62,30 +65,62 @@ function LoginPage() {
         className="flex gap-8 flex-col justify-center items-center"
       >
         <div className="text-center mt-20">
-          <h1 className="text-5xl font-semibold font-manrope text-seinfra-blue-light-700 mb-4">
+          <h1 className="text-5xl font-semibold font-manrope text-seinfra-blue-light-400 mb-4">
             Registrar Ordem
           </h1>
         </div>
         <FieldGroup>
-          <div className="w-full flex justify-center">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-[90vw] max-w-[600px]">
-                  Categoria
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[31.5vw]" align="start">
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>Iluminação</DropdownMenuItem>
-                  <DropdownMenuItem>Poda de Árvore</DropdownMenuItem>
-                  <DropdownMenuItem>Buraco na Pista</DropdownMenuItem>
-                  <DropdownMenuItem>Asfaltar</DropdownMenuItem>
-                  <DropdownMenuItem>Outros</DropdownMenuItem>
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <div className="flex justify-center">
+            <Controller
+              control={form.control}
+              name="category"
+              render={({ field, fieldState }) => (
+                <Field
+                  orientation={"vertical"}
+                  data-invalid={fieldState.invalid}
+                >
+                  <DropdownMenu onOpenChange={setOpen} {...field}>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className="w-[90vw] max-w-[600px] p-4 border-2 border-seinfra-blue-light-400 rounded-2xl bg-white text-seinfra-blue-light-400 font-bold text-left justify-start hover:bg-transparent focus:bg-transparent hover:text-seinfra-blue-light-400 focus:text-seinfra-blue-light-400"
+                      >
+                        {field.value || "Categoria"}
+                        <DropdownMenuShortcut>
+                          <DropdownMenuShortcut>
+                            {open ? (
+                              <ChevronUp className="text-seinfra-blue-light-400" />
+                            ) : (
+                              <ChevronDown className="text-seinfra-blue-light-400" />
+                            )}
+                          </DropdownMenuShortcut>
+                        </DropdownMenuShortcut>
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="start"
+                      className="w-[90vw] max-w-[600px] border-2 border-seinfra-blue-light-200 rounded-2xl"
+                    >
+                      <DropdownMenuGroup>
+                        {categories.map((item) => (
+                          <DropdownMenuItem
+                            key={item}
+                            onClick={() => field.onChange(item)}
+                            className="text-2xs font-bold text-seinfra-blue-light-400 cursor-pointer hover:bg-white focus:bg-white"
+                          >
+                            {item}
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
           </div>
-
           <Controller
             control={form.control}
             name="neighborhood"
@@ -160,7 +195,7 @@ function LoginPage() {
                   <Textarea
                     {...field}
                     className={cn(
-                      "max-w-[600px] border-seinfra-blue-light-200 w-full min-w-0 rounded-3xl pb-38",
+                      "max-w-[600px] border-seinfra-blue-light-400 w-full min-w-0 rounded-3xl pb-38",
                       "resize-none"
                     )}
                   />
@@ -175,7 +210,10 @@ function LoginPage() {
                   <FieldError errors={[fieldState.error]} />
                 )}
 
-                <Button className="px-4 py-3 mt-12 rounded-3xl max-w-[600px]">
+                <Button
+                  type="submit"
+                  className="px-4 py-3 mt-12 rounded-3xl max-w-[600px]"
+                >
                   Entrar
                 </Button>
               </Field>
