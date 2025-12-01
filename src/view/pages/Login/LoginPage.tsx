@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,6 +18,8 @@ import { Input } from "@/components/ui/input";
 import { userLoginSchema } from "@/services/zodSchemas";
 
 function LoginPage() {
+  const navigate = useNavigate();
+
   const form = useForm<z.infer<typeof userLoginSchema>>({
     defaultValues: {
       password: "",
@@ -25,27 +28,32 @@ function LoginPage() {
     resolver: zodResolver(userLoginSchema),
   });
 
-  function onSubmit(data: z.infer<typeof userLoginSchema>) {
-    console.log(data);
+  async function onSubmit(data: z.infer<typeof userLoginSchema>) {
+    try {
+      console.log(data);
+      navigate({ to: "/", replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
-    <div className="flex min-h-[100dvh] h-auto flex-col overflow-x-hidden ">
+    <div className="relative flex min-h-dvh h-auto flex-col">
       <img
         src={pinkLine}
         alt="Linha Rosa Background"
-        className="absolute z-[-10] left-0 -top-10"
+        className="absolute left-0 -top-20 sm:-top-10"
       />
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex gap-8 flex-col justify-center items-center"
       >
-        <div className="text-center mt-[5%]">
+        <div className="text-center mt-14">
           <h1 className="text-5xl font-semibold font-manrope text-seinfra-blue-light-700 mb-4">
             Login
           </h1>
 
-          <p className="text-seinfra-blue-light-500">
+          <p className="text-seinfra-blue-light-500 mx-4">
             Informe seu CPF e senha para entrar na sua conta
           </p>
         </div>
@@ -55,12 +63,7 @@ function LoginPage() {
             name="cpf"
             render={({ field, fieldState }) => (
               <Field orientation={"seinfra"} data-invalid={fieldState.invalid}>
-                <FieldLabel
-                  htmlFor={field.name}
-                  className="max-w-[600px] font-semibold"
-                >
-                  CPF
-                </FieldLabel>
+                <FieldLabel htmlFor={field.name}>CPF</FieldLabel>
                 <Input {...field} id={field.name} autoComplete="username" />
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
@@ -73,12 +76,7 @@ function LoginPage() {
             name="password"
             render={({ field, fieldState }) => (
               <Field orientation={"seinfra"} data-invalid={fieldState.invalid}>
-                <FieldLabel
-                  htmlFor={field.name}
-                  className="font-semibold max-w-[600px]"
-                >
-                  Senha
-                </FieldLabel>
+                <FieldLabel htmlFor={field.name}>Senha</FieldLabel>
                 <Input
                   {...field}
                   type="password"
@@ -93,7 +91,7 @@ function LoginPage() {
             )}
           />
         </FieldGroup>
-        <footer>
+        <footer className="flex flex-col gap-4">
           <div className="flex flex-col text-center font-semibold">
             <h1 className="text-seinfra-blue-light-500">Não tem uma conta?</h1>
             <Link to="/register" className="text-seinfra-yellow-300 underline">
@@ -101,7 +99,7 @@ function LoginPage() {
             </Link>
           </div>
 
-          <div className="flex items-center justify-center mt-[5%] mb-[5%] gap-y-12 gap-x-24 sm:flex-row">
+          <div className="flex flex-col items-center justify-center mt-14 mb-14 gap-y-12 gap-x-24 sm:flex-row">
             <img src={ConectaSeinfraIcon} alt="Logo do Conecta Seinfra" />
             <img src={LogoPrefeitura} alt="Logo Prefeitura de Nova Russas" />
           </div>
