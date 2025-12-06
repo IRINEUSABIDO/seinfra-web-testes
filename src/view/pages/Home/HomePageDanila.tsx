@@ -23,29 +23,29 @@ function HomePageDanila() {
             className="size-44 sm:size-58 mt-12"
           />
           <div className="flex flex-col items-center justify-center gap-12 ">
-            <div className="flex flex-wrap gap-12 justify-center items-center">
+            <div className="flex flex-wrap gap-8 justify-center items-center">
               <NavButtonDanila
                 Page="/login"
                 Desc="Informe uma nova O.S"
                 Icon={RoundedFile}
                 Label="Nova Ordem de Serviço"
-                className="aspect-square w-component-w xxs:w-48 h-52"
+                className="aspect-[5/3] w-component-w xxs:w-[40vw] lg:w-[30vw] h-48 lg:h-auto max-h-96"
               />
               <NavButtonDanila
                 Page="/solicitacoes"
                 Desc="Veja o andamento das suas O.S"
                 Icon={History}
                 Label="Minhas Solicitações"
-                className="aspect-square w-component-w xxs:w-48 h-52"
+                className="aspect-[5/3] w-component-w xxs:w-[40vw] lg:w-[30vw] h-48 lg:h-auto max-h-96"
               />
             </div>
-            <div className="flex justify-center items-center">
+            <div className="flex gap-12 justify-center items-center">
               <NavButtonDanila
                 Page="/register"
                 Desc="Envie mensagens diretamente para a prefeitura"
                 Icon={Phone}
                 Label="Mensagem Direta"
-                className="aspect-square w-component-w xxs:w-48 h-52"
+                className="aspect-[5/3] w-component-w xxs:w-[40vw] lg:w-[30vw] h-48 lg:h-auto max-h-96"
               />
             </div>
           </div>
