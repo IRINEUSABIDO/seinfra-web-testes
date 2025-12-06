@@ -22,8 +22,8 @@ export default function NavButtonDanila({
       <Link to={Page}>
         <div
           className={cn(
-            "bg-white rounded-3xl py-4 font-semibold",
-            "flex flex-col grow gap-8",
+            "bg-white rounded-3xl shadow-sm font-semibold",
+            "flex flex-col justify-center gap-8",
             className,
           )}
         >

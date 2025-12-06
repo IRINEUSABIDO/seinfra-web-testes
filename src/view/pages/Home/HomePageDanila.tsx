@@ -20,23 +20,23 @@ function HomePageDanila() {
           <img
             src={ConectaSeinfraIcon}
             alt="Logo do Conecta Seinfra"
-            className="size-54 sm:size-64 mt-12"
+            className="size-44 sm:size-58 mt-12"
           />
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-4 justify-center">
+          <div className="flex flex-col items-center justify-center gap-12 ">
+            <div className="flex flex-wrap gap-12 justify-center items-center">
               <NavButtonDanila
                 Page="/login"
                 Desc="Informe uma nova O.S"
                 Icon={RoundedFile}
                 Label="Nova Ordem de Serviço"
-                className="w-44 h-full max-w-[480px] xs:w-55 lg:w-[40vw] lg:flex lg:justify-center lg:items-center lg:text-center"
+                className="aspect-square w-component-w xxs:w-48 h-52"
               />
               <NavButtonDanila
                 Page="/solicitacoes"
                 Desc="Veja o andamento das suas O.S"
                 Icon={History}
                 Label="Minhas Solicitações"
-                className="w-44 h-full max-w-[480px] xs:w-55 lg:w-[40vw] lg:flex lg:justify-center lg:items-center lg:text-center"
+                className="aspect-square w-component-w xxs:w-48 h-52"
               />
             </div>
             <div className="flex justify-center items-center">
@@ -45,7 +45,7 @@ function HomePageDanila() {
                 Desc="Envie mensagens diretamente para a prefeitura"
                 Icon={Phone}
                 Label="Mensagem Direta"
-                className="w-92 max-w-[480px] xs:w-55 lg:w-[40vw] lg:flex lg:justify-center lg:items-center lg:text-center"
+                className="aspect-square w-component-w xxs:w-48 h-52"
               />
             </div>
           </div>

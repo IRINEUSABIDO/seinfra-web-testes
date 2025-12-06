@@ -18,6 +18,7 @@ body {
   --spacing-component-w: 90vw;
 
   --breakpoint-xs: 34rem;
+  --breakpoint-xxs: 28rem;
 
   --color-seinfra-blue-light-50:  #e9f6f7;
   --color-seinfra-blue-light-100: #bbe4e7;
