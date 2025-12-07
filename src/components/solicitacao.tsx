@@ -20,7 +20,7 @@ export default function SolicitacaoCard({
   Time,
 }: Props) {
   return (
-    <div className={cn("bg-white rounded-3xl", "flex w-[90vw] lg:w-[90vw]")}>
+    <div className={cn("bg-white rounded-3xl", "flex w-component-w")}>
       <div
         className={cn(
           "bg-gray-500",
@@ -36,22 +36,22 @@ export default function SolicitacaoCard({
 
       <div
         className={cn(
-          "px-4 py-4",
+          "px-3 py-4",
           "flex grow text-sm text-seinfra-blue-light-700-50",
         )}
       >
         {/* text */}
         <div className="flex flex-col flex-1 gap-2 break-all">
           <div>
-            <h1 className="font-bold text-xl text-seinfra-blue-light-700-70">
+            <h1 className="font-bold line-clamp-1 text-md md:text-lg text-seinfra-blue-light-700-70">
               Categoria: {Category}
             </h1>
           </div>
-          <div className="flex flex-col gap-2 text-sm">
+          <div className="flex flex-col gap-2 text-xs md:text-sm">
             <h3 className="line-clamp-1">Local: {Local}</h3>
             <h3 className="line-clamp-1">Problema: {Problem}</h3>
           </div>
-          <div className="flex flex-col gap-2 text-[0.6rem]">
+          <div className="flex flex-col gap-2 text-[0.525rem] md:text-[0.625rem]">
             <p>Data de solicitação {RequestDate}</p>
             <p>Data de conclusão: {ConclusionDate}</p>
           </div>

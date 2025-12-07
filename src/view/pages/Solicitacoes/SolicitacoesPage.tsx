@@ -1,5 +1,6 @@
 import SolicitacaoCard from "@/components/solicitacao";
-import logoPrefeitura from "./../../../assets/LogoPrefeitura.svg";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 import { cn } from "@/lib/utils";
 
 export default function SolicitacoesPage() {
@@ -7,7 +8,7 @@ export default function SolicitacoesPage() {
     {
       category: "Buraco na pista",
       local: "11 de novembro",
-      problem: "caiu a luz aq doido",
+      problem: "rua ta toda cheia de buraco",
       requestDate: "21/08/2025",
       conclusionDate: "04/09/2025",
       state: "Finalizada",
@@ -16,7 +17,8 @@ export default function SolicitacoesPage() {
     {
       category: "Iluminação",
       local: "11 de novembro",
-      problem: "rua ta toda cheia de buraco",
+      problem:
+        "caiu um poste e explodiu a cabeça do fulano jakaasjasdlkadklajdlkasdklasjdlkasjdlkasjd",
       requestDate: "21/08/2025",
       conclusionDate: "04/09/2025",
       state: "Excluída",
@@ -25,7 +27,25 @@ export default function SolicitacoesPage() {
     {
       category: "Asfaltar",
       local: "11 de novembro",
-      problem: "rua ta toda cheia de buraco",
+      problem: "rua ta toda cheia de buraco tem que asfaltar isso dae",
+      requestDate: "21/08/2025",
+      conclusionDate: "04/09/2025",
+      state: "Em execução",
+      time: "3d",
+    },
+    {
+      category: "Asfaltar",
+      local: "11 de novembro",
+      problem: "rua ta toda cheia de buraco tem que asfaltar isso dae",
+      requestDate: "21/08/2025",
+      conclusionDate: "04/09/2025",
+      state: "Em execução",
+      time: "3d",
+    },
+    {
+      category: "Asfaltar",
+      local: "11 de novembro",
+      problem: "rua ta toda cheia de buraco tem que asfaltar isso dae",
       requestDate: "21/08/2025",
       conclusionDate: "04/09/2025",
       state: "Em execução",
@@ -34,15 +54,15 @@ export default function SolicitacoesPage() {
   ];
   return (
     <div>
+      <Header Title="Minhas Solicitações" />
       <main
         className={cn(
           "bg-gray-100 text-seinfra-blue-light-400 font-semibold",
           "flex flex-col items-center justify-center gap-8",
-          "min-h-[100dvh] h-auto w-screen",
+          "min-h-dvh h-auto w-full overflow-hidden",
         )}
       >
-        <h1 className="mt-24 text-2xl lg:text-3xl">Minhas Solicitações</h1>
-        <div className="flex flex-col justify-center items-center gap-8">
+        <div className="flex flex-col justify-center items-center gap-8 mt-28 mb-20 lg:mt-4">
           {fakeData.map((data) => (
             <SolicitacaoCard
               Category={data.category}
@@ -102,7 +122,7 @@ export default function SolicitacoesPage() {
           />
         </div>
 	*/}
-        <img src={logoPrefeitura} className="size-[40%] sm:size-[20%] mb-4" />
+        <Footer />
       </main>
     </div>
   );
