@@ -18,10 +18,10 @@ export default function SolicitacoesPage() {
       category: "Iluminação",
       local: "11 de novembro",
       problem:
-        "caiu um poste e explodiu a cabeça do fulano jakaasjasdlkadklajdlkasdklasjdlkasjdlkasjd",
+        "caiu um poste e explodiu a cabeça do fulano jakaasjasdlkadklajdlkasdklasjdlkasjdlkasjdkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
       requestDate: "21/08/2025",
       conclusionDate: "04/09/2025",
-      state: "Excluída",
+      state: "Finalizada",
       time: "15m",
     },
     {
@@ -48,7 +48,7 @@ export default function SolicitacoesPage() {
       problem: "rua ta toda cheia de buraco tem que asfaltar isso dae",
       requestDate: "21/08/2025",
       conclusionDate: "04/09/2025",
-      state: "Em execução",
+      state: "Excluída",
       time: "3d",
     },
   ];
@@ -75,53 +75,6 @@ export default function SolicitacoesPage() {
             />
           ))}
         </div>
-        {/*  <SolicitacaoCard
-            Category="Iluminação"
-            Local="11 de Novembro"
-            Problem="Caiu um raio e explodiu tudo aqui kakakakakakakakakakakakakakakakakakak kakakakakakakakakakakkaakkakakakakakakakakakaakakkakakakakakakakakakakakakakakkakakakakakakakakakakakakak"
-            RequestDate="12/03/25"
-            ConclusionDate="09/09/25"
-            State="Finalizada"
-            Time="2h"
-          />
-          <SolicitacaoCard
-            Category="Iluminação"
-            Local="11 de Novembro"
-            Problem="Caiu um raio e explodiu tudo aqui"
-            RequestDate="12/03/25"
-            ConclusionDate=""
-            State="Em execução"
-            Time="2h"
-          />
-          <SolicitacaoCard
-            Category="Iluminação"
-            Local="11 de Novembro"
-            Problem="Caiu um raio e explodiu tudo aqui"
-            RequestDate="12/03/25"
-            ConclusionDate="09/09/25"
-            State="Excluída"
-            Time="2h"
-          />
-          <SolicitacaoCard
-            Category="Iluminação"
-            Local="11 de Novembro"
-            Problem="Caiu um raio e explodiu tudo aqui"
-            RequestDate="12/03/25"
-            ConclusionDate="09/09/25"
-            State="Finalizada"
-            Time="2h"
-          />
-          <SolicitacaoCard
-            Category="Iluminação"
-            Local="11 de Novembro"
-            Problem="Caiu um raio e explodiu tudo aqui"
-            RequestDate="12/03/25"
-            ConclusionDate="09/09/25"
-            State="Finalizada"
-            Time="2h"
-          />
-        </div>
-	*/}
         <Footer />
       </main>
     </div>

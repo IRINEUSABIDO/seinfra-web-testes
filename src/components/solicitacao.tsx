@@ -28,12 +28,9 @@ export default function SolicitacaoCard({
           `${State === "Em execução" && "bg-seinfra-yellow-500"}`,
           `${State === "Excluída" && "bg-red-500"}`,
           "text-transparent rounded-tl-3xl rounded-bl-3xl",
-          "w-4",
+          "w-4 shrink-0",
         )}
-      >
-        Dbz
-      </div>
-
+      />
       <div
         className={cn(
           "px-3 py-4",
@@ -60,11 +57,11 @@ export default function SolicitacaoCard({
         <div className="flex flex-col flex-1 justify-between items-end">
           <button
             className={cn(
-              "bg-gray-500",
+              "bg-gray-500 py-2 px-4",
               `${State === "Finalizada" && "bg-seinfra-green-500"}`,
               `${State === "Excluída" && "bg-red-500"}`,
-              `${State === "Em execução" && "bg-seinfra-yellow-500"}`,
-              "py-2 px-4 text-white text-xs rounded-sm",
+              `${State === "Em execução" && "bg-seinfra-yellow-500 px-2"}`,
+              "text-white text-xs rounded-sm",
             )}
           >
             {State}

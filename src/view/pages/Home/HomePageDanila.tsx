@@ -1,4 +1,4 @@
-import ConectaSeinfraIcon from "./../../../assets/ConectaSeinfra.svg";
+import ConectaSeinfraIcon from "./../../../assets/conctaSeinfraLight.svg";
 import LogoPrefeitura from "./../../../assets/LogoPrefeitura.svg";
 import pinkLine from "./../../../assets/pinkLine.svg";
 import yellowLine from "./../../../assets/yellowLine.svg";
