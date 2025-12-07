@@ -34,13 +34,13 @@ export default function SolicitacaoCard({
       <div
         className={cn(
           "px-3 py-4",
-          "flex grow text-sm text-seinfra-blue-light-700-50",
+          "flex grow text-sm text-seinfra-blue-light-700/50",
         )}
       >
         {/* text */}
         <div className="flex flex-col flex-1 gap-2 break-all">
           <div>
-            <h1 className="font-bold line-clamp-1 text-md md:text-lg text-seinfra-blue-light-700-70">
+            <h1 className="font-bold line-clamp-1 text-md md:text-lg text-seinfra-blue-light-700/70">
               Categoria: {Category}
             </h1>
           </div>
