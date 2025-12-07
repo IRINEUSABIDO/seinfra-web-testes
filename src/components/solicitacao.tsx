@@ -6,7 +6,7 @@ interface Props {
   Problem: string;
   RequestDate: string;
   ConclusionDate: string;
-  State: "Finalizada" | "Em execução" | "Excluída";
+  State: string;
   Time: string;
 }
 
@@ -23,8 +23,9 @@ export default function SolicitacaoCard({
     <div className={cn("bg-white rounded-3xl", "flex w-[90vw] lg:w-[90vw]")}>
       <div
         className={cn(
-          `${State === "Finalizada" && "bg-green-500"}`,
-          `${State === "Em execução" && "bg-yellow-500"}`,
+          "bg-gray-500",
+          `${State === "Finalizada" && "bg-seinfra-green-500"}`,
+          `${State === "Em execução" && "bg-seinfra-yellow-500"}`,
           `${State === "Excluída" && "bg-red-500"}`,
           "text-transparent rounded-tl-3xl rounded-bl-3xl",
           "w-4",
@@ -33,29 +34,37 @@ export default function SolicitacaoCard({
         Dbz
       </div>
 
-      <div className={cn("px-4 py-4", "flex justify-between grow text-[1rem]")}>
+      <div
+        className={cn(
+          "px-4 py-4",
+          "flex grow text-sm text-seinfra-blue-light-700-50",
+        )}
+      >
         {/* text */}
-        <div className="flex flex-col gap-2 break-all hyphens-auto">
+        <div className="flex flex-col flex-1 gap-2 break-all">
           <div>
-            <h1 className="font-bold">Categoria: {Category}</h1>
+            <h1 className="font-bold text-xl text-seinfra-blue-light-700-70">
+              Categoria: {Category}
+            </h1>
           </div>
-          <div className="flex flex-col gap-2 text-[0.75rem]">
-            <h3>Local: {Local}</h3>
-            <h3 lang="pt-br">Problema: {Problem}</h3>
+          <div className="flex flex-col gap-2 text-sm">
+            <h3 className="line-clamp-1">Local: {Local}</h3>
+            <h3 className="line-clamp-1">Problema: {Problem}</h3>
           </div>
-          <div className="flex flex-col gap-2 text-[0.625rem]">
+          <div className="flex flex-col gap-2 text-[0.6rem]">
             <p>Data de solicitação {RequestDate}</p>
             <p>Data de conclusão: {ConclusionDate}</p>
           </div>
         </div>
         {/* other stuff */}
-        <div className="flex flex-col justify-between items-end">
+        <div className="flex flex-col flex-1 justify-between items-end">
           <button
             className={cn(
-              `${State === "Finalizada" && "bg-green-500"}`,
+              "bg-gray-500",
+              `${State === "Finalizada" && "bg-seinfra-green-500"}`,
               `${State === "Excluída" && "bg-red-500"}`,
-              `${State === "Em execução" && "bg-yellow-500"}`,
-              "py-2 px-4 text-white text-[0.7rem] rounded-sm",
+              `${State === "Em execução" && "bg-seinfra-yellow-500"}`,
+              "py-2 px-4 text-white text-xs rounded-sm",
             )}
           >
             {State}
